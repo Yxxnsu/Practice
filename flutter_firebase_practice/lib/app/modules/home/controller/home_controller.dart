@@ -33,7 +33,7 @@ class HomeController extends GetxController {
     return null;
   }
 
-  String? validateEmail(String value) {
+  String? validateAddress(String value) {
     if (value.isEmpty) {
       return "Address can not be empty";
     }
