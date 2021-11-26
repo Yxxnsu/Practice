@@ -11,7 +11,7 @@ class HomeController extends GetxController {
   late TextEditingController nameController, addressController;
   late CollectionReference collectionReference;
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  RxList<EmployeeModel> employees = RxList<EmployeeModel>([]);
+  final employees = RxList<EmployeeModel>([]);
 
   @override
   void onInit() {
@@ -24,7 +24,8 @@ class HomeController extends GetxController {
 
   Stream<List<EmployeeModel>> getAllEmployees() =>
       collectionReference.snapshots().map((query) =>
-          query.docs.map((ds) => EmployeeModel.fromSnapshot(ds)).toList());
+          query.docs.map((ds) => EmployeeModel.fromSnapshot(ds)).toList()
+  );
 
   String? validateName(String value) {
     if (value.isEmpty) {
