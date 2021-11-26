@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animaiton/views/first_view.dart';
+import 'package:flutter_animaiton/views/root.dart';
+import 'package:flutter_animaiton/views/second_views.dart';
 import 'package:flutter_animaiton/views/test_view.dart';
 import 'package:get/get.dart';
+
+import 'binding/first_binding.dart';
+import 'views/third_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +18,35 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      initialBinding: IntialBinding(),
+      initialRoute: '/',
+      getPages: [
+        GetPage(
+          name: '/',
+          page: () => const RootView(),
+          transition: Transition.fadeIn,
+          binding: IntialBinding(),
+          // binding: BindingsBuilder((){
+          //   Get.lazyPut(() => TestController());
+          // }),
+        ),
+        GetPage(
+          name: '/second',
+          page: () => SecondView(),
+          transition: Transition.cupertino,
+        ),
+        GetPage(
+          name: '/third',
+          page: () => ThirdView(),
+          transition: Transition.zoom,
+        ),
+      ],
       title: 'Flutter Animation',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const AnimationSelectView(),
+      home: const RootView(),
     );
   }
 }
