@@ -13,6 +13,7 @@ class TestController extends GetxController {
   final isYeon = false.obs;
   bool isSign = false;
 
+  // TODO: obs와 마찬가지로 Obx 씌우면 반응형으로 가능.
   bool get isValid => isRight.value | isYeon.value;
 
   @override

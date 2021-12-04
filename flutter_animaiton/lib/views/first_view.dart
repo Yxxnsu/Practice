@@ -21,6 +21,7 @@ class FirstView extends GetView<TestController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            //TODO: Getbulder 안에서는 obx 변수도 바뀐다.
             GetBuilder<TestController>(
               builder: (_) {
                 return Column(
