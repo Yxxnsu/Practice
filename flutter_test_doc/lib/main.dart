@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test_doc/binding/binding.dart';
 import 'package:flutter_test_doc/test_view.dart';
+import 'package:flutter_test_doc/widget/custom_painter.dart';
 import 'package:flutter_test_doc/widget/face_dectection.dart';
 import 'package:get/route_manager.dart';
 // import 'package:get/get.dart';
@@ -13,12 +14,13 @@ void main() {
 }
 
 class MyApp2 extends StatelessWidget {
-  const MyApp2({ Key? key }) : super(key: key);
+  const MyApp2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: TestView(),
+      initialBinding: initBinding(),
+      home: const TestView(),
     );
   }
 }
