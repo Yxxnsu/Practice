@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test_doc/binding/binding.dart';
 import 'package:flutter_test_doc/test_view.dart';
+import 'package:flutter_test_doc/views/test.dart';
 import 'package:flutter_test_doc/widget/custom_painter.dart';
 import 'package:flutter_test_doc/widget/face_dectection.dart';
 import 'package:get/route_manager.dart';
