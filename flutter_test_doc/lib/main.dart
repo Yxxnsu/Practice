@@ -6,6 +6,7 @@ import 'package:flutter_test_doc/views/cycle_test/test.dart';
 import 'package:flutter_test_doc/views/woody/custom_drawer.dart';
 import 'package:flutter_test_doc/views/woody/woody.dart';
 import 'package:flutter_test_doc/widget/face_dectection.dart';
+import 'package:flutter_test_doc/widget/test.dart';
 import 'package:flutter_test_doc/widget/ticket.dart';
 import 'package:get/route_manager.dart';
 // import 'package:get/get.dart';
@@ -20,9 +21,9 @@ class Woody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return const GetMaterialApp(
       debugShowCheckedModeBanner: true,
-      home: Woodys(),
+      home: Test(),
     );
   }
 }
