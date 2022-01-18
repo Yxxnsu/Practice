@@ -28,7 +28,7 @@ class TimerController extends GetxController {
   }
 
   void start() {
-    _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       _sec.value = _time.value ~/ 60;
       _time.value--;
       if (_time.value == 0) {
