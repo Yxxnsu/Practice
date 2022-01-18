@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test_doc/controller/test_controller/four_controller.dart';
 import 'package:flutter_test_doc/controller/test_controller/one_controller.dart';
 import 'package:flutter_test_doc/controller/test_controller/three_controller.dart';
 import 'package:flutter_test_doc/controller/test_controller/two_controller.dart';
@@ -20,15 +21,21 @@ class TestView2 extends GetView<OneController> {
           SizedBox(
             height: 300,
           ),
+          // Obx(
+          //   () => Text(
+          //     controller.one.toString(),
+          //     textScaleFactor: 3,
+          //   ),
+          // ),
+          // Obx(
+          //   () => Text(
+          //     TwoController.to.two.toString(),
+          //     textScaleFactor: 3,
+          //   ),
+          // ),
           Obx(
             () => Text(
-              controller.one.toString(),
-              textScaleFactor: 3,
-            ),
-          ),
-          Obx(
-            () => Text(
-              TwoController.to.two.toString(),
+              '${FourController.to.one.toString()} + Controller4',
               textScaleFactor: 3,
             ),
           ),
@@ -65,6 +72,12 @@ class TestView2 extends GetView<OneController> {
             },
             text1: 'Third Increased',
             text2: 'Third Decreased',
+          ),
+          button(
+            onTap1: () => FourController.to.one++,
+            onTap2: () => FourController.to.one--,
+            text1: 'Four Increased',
+            text2: 'Four Decreased',
           ),
           SizedBox(
             height: 100,
