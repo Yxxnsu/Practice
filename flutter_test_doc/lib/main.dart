@@ -1,6 +1,7 @@
 // ignore_for_file: void_checks
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_test_doc/binding/binding.dart';
 import 'package:flutter_test_doc/views/cycle_test/test.dart';
 import 'package:flutter_test_doc/views/woody/custom_drawer.dart';
@@ -23,7 +24,38 @@ class Woody extends StatelessWidget {
   Widget build(BuildContext context) {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: true,
-      home: Test(),
+      home: Testddd(),
+    );
+  }
+}
+
+class Testddd extends StatelessWidget {
+  const Testddd({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Title'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const Text(
+                      '폰트 테스팅',
+                      style: TextStyle(
+                        fontFamily: 'AppleSDGothicNeo',
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const Text(
+                      '폰트 테스팅',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    )
+        ],
+      )
     );
   }
 }

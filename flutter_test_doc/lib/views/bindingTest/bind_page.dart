@@ -13,17 +13,35 @@ class BindingPage extends GetView<FourController> {
         appBar: AppBar(
           title: const Text('Binding Test'),
         ),
-        floatingActionButton:
-            FloatingActionButton(onPressed: () => controller.one.value++),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => controller.one.value++,
+          child: Icon(Icons.plus_one),
+        ),
         body: Center(
-          child: Obx(() => Column(
-                children: [
-                  Text('${controller.one.value}'),
-                  const Hello(),
-                  ElevatedButton(onPressed: ()=> Get.to(()=> TestView2()), child: Text('이동')),
-                  ElevatedButton(onPressed: ()=> controller.testing(), child: const Text('TEST')) ,
-                ],
-              )),
-        ));
+          child: Column(
+              children: [
+                Text('${controller.one.value}'),
+                const Hello(),
+                ElevatedButton(onPressed: ()=> Get.to(()=> TestView2()), child: Text('이동')),
+                ElevatedButton(onPressed: ()=> controller.testing(), child: const Text('TEST')) ,
+                test(),
+              ],
+            ),
+        ),
+      );
+  }
+
+  Widget test(){
+    if(controller.one.value > 10){
+      return Container(
+        color: Colors.red,
+        height: 100,
+      );
+    } else {
+      return Container(
+        color: Colors.black,
+        height: 100,
+      ); 
+    }   
   }
 }
