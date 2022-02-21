@@ -26,6 +26,7 @@ class Juso {
   final String? buldSlno;
   final String? nbrMnnm;
   final String? lnbrSlno;
+  final String? lnbrMnnm;
   Juso({
     this.roadAddr,
     this.roadAddrPart1,
@@ -54,6 +55,7 @@ class Juso {
     this.buldSlno,
     this.nbrMnnm,
     this.lnbrSlno,
+    this.lnbrMnnm,
   });
 
   factory Juso.empty(){
@@ -85,6 +87,7 @@ class Juso {
       buldSlno: '',
       nbrMnnm: '',
       lnbrSlno: '',
+      lnbrMnnm: '',
     );
   }
 
@@ -117,6 +120,7 @@ class Juso {
       'buldSlno': buldSlno,
       'nbrMnnm': nbrMnnm,
       'lnbrSlno': lnbrSlno,
+      'lnbrMnnm': lnbrMnnm,
     };
   }
 
@@ -151,6 +155,7 @@ class Juso {
           buldSlno: json['buldSlno'] ?? '',
           nbrMnnm: json['nbrMnnm'] ?? '',
           lnbrSlno: json['lnbrSlno'] ?? '',
+          lnbrMnnm: json['lnbrMnnm'] ?? '',
         );
   }
 }
