@@ -8,7 +8,7 @@ import 'package:road_api_test/repository/address_repo.dart';
 
 class AddressController extends GetxController{
 
-  static const apiKey = 'devU01TX0FVVEgyMDIyMDEyNzE3MjkyNDExMjE5MDE=';
+  static const apiKey = 'devU01TX0FVVEgyMDIyMDIyMTE0MDc0MjExMjI2NTY=';
 
   final addrEdit = TextEditingController();
   final scrollController = ScrollController();
@@ -19,12 +19,12 @@ class AddressController extends GetxController{
 
   final _addressList = <Juso>[].obs;
 
-  List<Juso> get addressList => _addressList;
+  RxList<Juso> get addressList => _addressList;
 
   @override
   void onInit() {
     addScrollListener();
-    // addTextEditListener();
+    addTextEditListener();
     super.onInit();
   }
 
@@ -34,7 +34,7 @@ class AddressController extends GetxController{
 
     String? query;
     AddressRepository _addressRepository = AddressRepository();
-    ErrorModel? _error;
+    ErrorModel? _error = ErrorModel(statusCode: 200, error: 0, meassge: '');
 
     query = httpGetQuery(query, "confmKey", apiKey);
     query = httpGetQuery(query, "currentPage", '$pageNumber');
@@ -45,23 +45,25 @@ class AddressController extends GetxController{
     // logger.d(query);
 
     try{
+      if(pageNumber == 1) _addressList.clear(); 
 
       Address address = await _addressRepository.searchAddress(query!);
-      logger.d(address.common);
-      logger.d('eeeeeee');
+  
 
-      if(address.jusoList.isEmpty && address.common.errorCode == '0'){
-        throw _error = ErrorModel(statusCode: 0, error: -101, meassge: '검색 결과가 없습니다.');
-      } else if (address.common.errorCode != '0'){
-        throw _error = ErrorModel(statusCode: 0, error: 0, meassge: address.common.errorMsg);
+      if(address.jusoList != null){
+        if(address.jusoList!.isEmpty && address.common.errorCode == '0'){
+          _error = ErrorModel(statusCode: 0, error: -101, meassge: '검색 결과가 없습니다.');
+        } else if (address.common.errorCode != '0'){
+          _error = ErrorModel(statusCode: 0, error: 0, meassge: address.common.errorMsg);
+        }
       }
-
-      errorMessage.value = _error!.meassge;
-
-      if(pageNumber == 1) _addressList.clear();
+      
+      errorMessage.value = _error.meassge;
+ 
       if(_error.error == -101) page.value = -1;
+        
 
-      _addressList.addAll(address.jusoList);
+      if(address.jusoList != null) _addressList.addAll(address.jusoList!);
 
     } catch (e) { 
       Get.defaultDialog(
@@ -72,11 +74,10 @@ class AddressController extends GetxController{
         contentPadding: const EdgeInsets.all(16), 
         onConfirm: ()=> Get.back()
       );
-      // logger.d(e);
     } 
   }
 
-  String? httpGetQuery(String? query, String key, String value) {
+  String? httpGetQuery(String? query, String key, var value) {
     if (value == null) {
       return query;
     }
