@@ -1,7 +1,7 @@
 class Common {
   final String totalCount;
-  final int currentPage;
-  final int countPerPage;
+  final String currentPage;
+  final String countPerPage;
   final String errorCode;
   final String errorMsg;
   Common({
@@ -25,8 +25,8 @@ class Common {
   factory Common.fromJson(Map<String, dynamic> json) {
     return Common(
       totalCount: json['totalCount'] ?? '',
-      currentPage: json['currentPage']?.toInt() ?? 0,
-      countPerPage: json['countPerPage']?.toInt() ?? 0,
+      currentPage: json['currentPage'] ?? '',
+      countPerPage: json['countPerPage'] ?? '',
       errorCode: json['errorCode'] ?? '',
       errorMsg: json['errorMsg'] ?? '',
     );
