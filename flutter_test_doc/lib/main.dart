@@ -42,18 +42,18 @@ class Testddd extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           const Text(
-                      '폰트 테스팅',
-                      style: TextStyle(
-                        fontFamily: 'AppleSDGothicNeo',
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const Text(
-                      '폰트 테스팅',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    )
+            '폰트 테스팅',
+            style: TextStyle(
+              fontFamily: 'AppleSDGothicNeo',
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const Text(
+            '폰트 테스팅',
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+            ),
+          ),
         ],
       )
     );
