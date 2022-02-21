@@ -34,7 +34,7 @@ class AddressRepository{
 
     if(response.statusCode == 200){
       Map<String,dynamic> body = json.decode(response.body);
-      logger.d(body);
+      // logger.d(body);
       // logger.d(body is Map);
       return Address.fromJson(body);
     } else {
