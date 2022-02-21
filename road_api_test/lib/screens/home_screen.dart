@@ -12,7 +12,7 @@ class HomeScreen extends GetView<AddressController> {
     return SafeArea(
       child: Scaffold(
         body: GestureDetector(
-          onTap: ()=> FocusScope.of(context).requestFocus(FocusNode()),
+          onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
           child: Column(
             children: <Widget>[
               const TopBar(
@@ -25,22 +25,16 @@ class HomeScreen extends GetView<AddressController> {
                   Expanded(
                     child: searchTextField(),
                   ),
-                  Obx(()=> 
-                    cancelWidget(),
+                  Obx(
+                    () => cancelWidget(),
                   ),
                   const SizedBox(
                     width: 10,
                   )
                 ],
               ),
-              ElevatedButton(
-                onPressed: ()=> controller.fetchAddress('종로', 1), 
-                child: const Text('뭔데'),
-              ),
               Expanded(
-                child: Obx(
-                  ()=> listView(),
-                ),
+                child: listView(),
               ),
             ],
           ),
@@ -78,48 +72,48 @@ class HomeScreen extends GetView<AddressController> {
     );
   }
 
-  Widget listView() {
-    if (controller.addressList.isEmpty) {
-      return Container(
-        alignment: Alignment.center,
-        color: Colors.white,
-        child: Column(
-          children: [
-            Container(
-              height: 15,
-              color: const Color(0xFFEdEdEd),
-            ),
-            Expanded(
-              child: Center(
-                child: Text(controller.errorMessage.value),
+  Widget listView(){
+    return Obx(() => controller.addressList.isEmpty 
+      ? Container(
+          alignment: Alignment.center,
+          color: Colors.white,
+          child: Column(
+            children: [
+              Container(
+                height: 15,
+                color: const Color(0xFFEdEdEd),
               ),
-            ),
-          ],
+              Expanded(
+                child: Center(
+                  child: Text(controller.errorMessage.value),
+                ),
+              ),
+            ],
+          ),
+        )
+      : ListView.builder(
+          controller: controller.scrollController,
+          itemCount: controller.addressList.length + 1,
+          itemBuilder: (BuildContext context, int index) {
+            if (index == 0) return Container(height: 15, color: const Color(0xFFEdEdEd));
+            if (index == controller.addressList.length) addAddressList();
+            final address = controller.addressList[index - 1];
+            return Column(
+              children: [
+                listItem(address),
+                Container(
+                  height: 1,
+                  color: const Color(0xFFEdEdEd),
+                ),
+              ],
+            );
+          }
         ),
-      );
-    }
-    return ListView.builder(
-      controller: controller.scrollController,
-      itemCount: controller.addressList.length + 1,
-      itemBuilder: (BuildContext context, int index) {
-        if (index == 0) return Container(height: 15, color: const Color(0xFFEdEdEd));
-        if (index == controller.addressList.length) addAddressList();
-        final address = controller.addressList[index - 1];
-        return Column(
-          children: [
-            listItem(address),
-            Container(
-              height: 1,
-              color: const Color(0xFFEdEdEd),
-            ),
-          ],
-        );
-      },
     );
   }
 
   Widget listItem(Juso address) {
-    final roadLast = address.buldSlno == '0' ? '' : '-' + address.buldSlno!;
+    final roadLast = address.buldSlno == 0 ? '' : '-' + address.buldSlno!.toString();
     final rodaTitle = '${address.rn} ${address.buldMnnm}$roadLast';
     final title = address.bdNm!.isEmpty ? rodaTitle : address.bdNm;
 
